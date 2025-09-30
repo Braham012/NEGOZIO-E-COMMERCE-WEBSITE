@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Orders</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0 120px;
+        background-color: #f8f8f8;
+      }
+
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        margin-top: 8px;
+        background-color: #2c3e50;
+        color: white;
+      }
+
+      #header h1 {
+        margin: 0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 28px;
+      }
+
+      #nav-links {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      #welcome-message {
+        position: relative;
+        text-align: center;
+      }
+
+      #logout-button {
+        width: 100%;
+        display: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        padding: 10px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .order-card {
+        position: relative;
+        margin-bottom: 15px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        gap: 22px;
+      }
+
+      .order-card img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      .cancel-order-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      #popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      #popup-box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 300px;
+      }
+
+      #popup-message {
+        margin-bottom: 15px;
+      }
+
+      #popup-buttons button {
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #popup-yes {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      #popup-no {
+        background-color: #95a5a6;
+        color: white;
+      }
+
+      #popup-status {
+        margin-top: 10px;
+        color: green;
+        font-weight: bold;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Negozio</h1>
+      <div id="nav-links">
+        <a
+          href="homepage.html"
+          style="color: white; text-decoration: none; margin-right: 40px"
+          >Home</a
+        >
+        <a
+          href="cart.html"
+          style="color: white; text-decoration: none; margin-right: 20px"
+          >Cart</a
+        >
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <h2>Your Orders</h2>
+      <div id="orders-container" style="margin-top: 20px; font-size: 18px">
+        Loading your orders...
+      </div>
+    </main>
+
+    <div id="popup-overlay">
+      <div id="popup-box">
+        <div id="popup-message">Confirm Cancel?</div>
+        <div id="popup-buttons">
+          <button id="popup-yes">Yes</button>
+          <button id="popup-no">No</button>
+        </div>
+        <div id="popup-status"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const welcomeText = document.getElementById("welcome-text");
+        const logoutButton = document.getElementById("logout-button");
+        const welcomeMessageDiv = document.getElementById("welcome-message");
+        const ordersContainer = document.getElementById("orders-container");
+        let logoutTimeout;
+
+        fetch("http://localhost:4500/user/verify", {
+          method: "GET",
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              welcomeText.textContent = `Welcome, ${data.user.name}`;
+              welcomeMessageDiv.style.display = "block";
+              logoutButton.style.display = "none";
+              fetchOrders();
+            } else {
+              welcomeText.textContent = "Welcome, Guest";
+              window.location.href = "homepage.html";
+            }
+          });
+
+        logoutButton.addEventListener("click", () => {
+          fetch("http://localhost:4500/user/logout", {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                window.location.href = "homepage.html";
+              }
+            });
+        });
+
+        welcomeMessageDiv.addEventListener("mouseenter", () => {
+          logoutButton.style.display = "block";
+          clearTimeout(logoutTimeout);
+        });
+        welcomeMessageDiv.addEventListener("mouseleave", () => {
+          logoutTimeout = setTimeout(() => {
+            logoutButton.style.display = "none";
+          }, 2000);
+        });
+        logoutButton.addEventListener("mouseenter", () => {
+          logoutButton.style.display = "block";
+          clearTimeout(logoutTimeout);
+        });
+        logoutButton.addEventListener("mouseleave", () => {
+          logoutTimeout = setTimeout(() => {
+            logoutButton.style.display = "none";
+          }, 2000);
+        });
+
+        function fetchOrders() {
+          fetch("http://localhost:4500/order/getorders", {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              ordersContainer.innerHTML = "";
+
+              if (!data.success || !data.orders || data.orders.length === 0) {
+                ordersContainer.textContent = "No Orders Yet";
+                return;
+              }
+
+              data.orders.forEach((order) => {
+                const orderDiv = document.createElement("div");
+                orderDiv.classList.add("order-card");
+
+                const productImage =
+                  order.productID?.images && order.productID.images.length > 0
+                    ? order.productID.images[0]
+                    : "placeholder.jpg";
+
+                const deliveryDate = new Date(order.deliverydate);
+                const formattedDeliveryDate = deliveryDate.toLocaleDateString(
+                  undefined,
+                  {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                );
+
+                let deliveryMessage = "";
+                if (order.status.toLowerCase() === "delivered") {
+                  deliveryMessage = `<p><strong>Delivered on:</strong> ${formattedDeliveryDate}</p>`;
+                } else {
+                  deliveryMessage = `<p><strong>Delivering on:</strong> ${formattedDeliveryDate}</p>`;
+                }
+
+                orderDiv.innerHTML = `
+                  <a href="productinfo.html?id=${order.productID?._id || ""}">
+                    <img src="${productImage}" alt="Product Image" style="  border-radius: 8px; margin-bottom: 10px; cursor: pointer;" />
+                  </a>
+                  <p><strong>Order Date:</strong> ${new Date(
+                    order.orderdate
+                  ).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}</p>
+                  <p><strong>Status:</strong> ${order.status}</p>
+                  ${deliveryMessage}
+                  <p><strong>Quantity:</strong> ${order.quantity}</p>
+                  <p><strong>Total Cost:</strong> ₹${order.totalamount}</p>
+                  <p><strong>Seller Contact:</strong> ${order.vendoremail}</p>
+                `;
+
+                if (
+                  order.status.toLowerCase() !== "delivered" &&
+                  order.status.toLowerCase() !== "cancelled"
+                ) {
+                  const cancelButton = document.createElement("button");
+                  cancelButton.textContent = "Cancel Order";
+                  cancelButton.style.cssText =
+                    "float: right; background-color: red; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;";
+
+                  cancelButton.addEventListener("click", () => {
+                    showCancelPopup(order._id);
+                  });
+
+                  orderDiv.appendChild(cancelButton);
+                }
+
+                ordersContainer.appendChild(orderDiv);
+              });
+            })
+            .catch((error) => {
+              console.error("Error fetching orders:", error);
+              ordersContainer.textContent = "Failed to load orders.";
+            });
+        }
+
+        function showCancelPopup(orderId) {
+          const popup = document.createElement("div");
+          popup.style.cssText =
+            "position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;";
+
+          popup.innerHTML = `
+            <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; width: 300px;">
+              <h3>Confirm Cancellation</h3>
+              <p>Are you sure you want to cancel this order?</p>
+              <button id="confirm-cancel" style="background-color: red; color: white; padding: 8px 12px; margin-right: 10px; border: none; border-radius: 5px; cursor: pointer;">Yes</button>
+              <button id="cancel-popup" style="background-color: gray; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">No</button>
+              <p id="cancel-message" style="margin-top: 10px; color: green; display: none;"></p>
+            </div>
+          `;
+
+          document.body.appendChild(popup);
+
+          document
+            .getElementById("cancel-popup")
+            .addEventListener("click", () => {
+              document.body.removeChild(popup);
+            });
+
+          document
+            .getElementById("confirm-cancel")
+            .addEventListener("click", () => {
+              fetch(`http://localhost:4500/order/cancelorder/${orderId}`, {
+                method: "PUT",
+                credentials: "include",
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  const message = document.getElementById("cancel-message");
+                  if (data.success) {
+                    message.textContent = "Order cancelled successfully!";
+                    message.style.color = "green";
+                    message.style.display = "block";
+                    setTimeout(() => {
+                      document.body.removeChild(popup);
+                      fetchOrders();
+                    }, 2000);
+                  } else {
+                    message.textContent = "Failed to cancel order!";
+                    message.style.color = "red";
+                    message.style.display = "block";
+                  }
+                })
+                .catch(() => {
+                  const message = document.getElementById("cancel-message");
+                  message.textContent = "Error cancelling order!";
+                  message.style.color = "red";
+                  message.style.display = "block";
+                });
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

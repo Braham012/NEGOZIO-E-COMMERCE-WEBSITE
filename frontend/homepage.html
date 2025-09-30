@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin-right: 120px;
+        margin-left: 120px;
+        padding: 0;
+        background-color: #f8f8f8;
+      }
+
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #2c3e50;
+        color: white;
+      }
+
+      #header h1 {
+        margin: 0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 28px;
+      }
+
+      #nav-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      #main-container {
+        background-color: #2c3e50;
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+
+      #search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #search-bar {
+        padding: 10px;
+        width: 95%;
+        border: 1px solid #bdc3c7;
+        border-radius: 25px 0 0 25px;
+        outline: none;
+        max-height: 40px;
+      }
+
+      #search-icon {
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #2c3e50;
+        color: white;
+        border: 1px solid #bdc3c7;
+        border-left: none;
+        border-radius: 0 25px 25px 0;
+        cursor: pointer;
+      }
+
+      #category-container {
+        display: flex;
+        justify-content: center;
+        margin: 25px 0;
+      }
+
+      .category {
+        margin: 0 15px;
+        padding: 10px 30px;
+        background-color: #eaeaea;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .category:hover {
+        background-color: #dcdcdc;
+      }
+
+      #product-list {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .product {
+        background-color: white;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        transition: box-shadow 0.3s;
+      }
+
+      .product:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .product img {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 5px;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 400px;
+      }
+
+      .close,
+      .close-login {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus,
+      .close-login:hover,
+      .close-login:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: black;
+      }
+
+      #websitename {
+        color: white;
+      }
+
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #555;
+      }
+
+      input {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 90%;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #message {
+        margin-top: 20px;
+        text-align: center;
+        color: red;
+      }
+
+      #welcome-message {
+        position: relative;
+        display: none;
+        text-align: center;
+      }
+
+      #logout-button {
+        display: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+      <div id="nav-links">
+        <a
+          href="vendorsignup.html"
+          id="seller-link"
+          style="margin-right: 40px; color: white; text-decoration: none"
+          >Become a Seller</a
+        >
+        <a
+          href="orders.html"
+          id="order-link"
+          style="
+            margin-right: 20px;
+            color: white;
+            text-decoration: none;
+            display: none;
+          "
+          >Orders</a
+        >
+        <a
+          href="cart.html"
+          id="cart-link"
+          style="
+            margin-right: 20px;
+            color: white;
+            text-decoration: none;
+            display: none;
+          "
+          >Cart</a
+        >
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+        <a href="#" id="signup-link" style="color: white; text-decoration: none"
+          >SignUp/Login</a
+        >
+      </div>
+    </div>
+
+    <div id="main-container">
+      <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Search products..." />
+        <div id="search-icon">🔍</div>
+      </div>
+
+      <div id="category-container">
+        <a href="categoryinfo.html?category=Electronic" class="category"
+          >Electronic</a
+        >
+        <a href="categoryinfo.html?category=Men Section" class="category"
+          >Men Section</a
+        >
+        <a href="categoryinfo.html?category=Women Section" class="category"
+          >Women Section</a
+        >
+        <a href="categoryinfo.html?category=Kids Section" class="category"
+          >Kids Section</a
+        >
+        <a href="categoryinfo.html?category=Watches" class="category"
+          >Watches</a
+        >
+        <a href="categoryinfo.html?category=Footwear" class="category"
+          >Footwear</a
+        >
+        <a href="categoryinfo.html?category=Accessories" class="category"
+          >Accessories</a
+        >
+      </div>
+    </div>
+
+    <div id="product-list"></div>
+
+    <!-- Modal for Signup -->
+    <div id="signup-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>User Registration</h1>
+        <form id="Registration" action="">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="off"
+          />
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="off"
+          />
+
+          <label for="confirmpassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmpassword"
+            name="confirmpassword"
+            required
+            autocomplete="off"
+          />
+
+          <button type="submit">Verify Email</button>
+        </form>
+        <div id="message"></div>
+        <p style="text-align: center; margin-top: 20px">
+          Already have Account?
+          <a href="#" id="open-login" style="text-decoration: none"
+            >Login here</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal for OTP Verification -->
+    <div id="otp-modal" class="modal">
+      <div class="modal-content">
+        <h1>OTP Verification</h1>
+        <label for="otp-email">Email:</label>
+        <input type="email" id="otp-email" name="otp-email" readonly />
+        <form id="otp-form" action="">
+          <label for="otp">Enter OTP:</label>
+          <input type="text" id="otp" name="otp" required />
+          <button type="submit">Submit</button>
+          <button type="button" id="resend-otp">Resend OTP</button>
+        </form>
+        <div id="otp-message"></div>
+      </div>
+    </div>
+
+    <!-- Modal for Login -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-login">&times;</span>
+        <h1>LOGIN</h1>
+        <form id="Login" action="">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            required
+            autocomplete="off"
+          />
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            required
+            autocomplete="off"
+          />
+
+          <button type="submit">Login</button>
+          <div id="login-message"></div>
+          <p style="text-align: center; margin-top: 20px">
+            Don't have Account?
+            <a href="#" id="open-signup" style="text-decoration: none"
+              >Signup</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const welcomeMessageDiv = document.getElementById("welcome-message");
+      const welcomeText = document.getElementById("welcome-text");
+      const logoutButton = document.getElementById("logout-button");
+
+      window.onload = async () => {
+        const user = await isLoggedin();
+        if (user) {
+          welcomeText.textContent = `Welcome, ${user.name}`;
+          welcomeMessageDiv.style.display = "block";
+          document.getElementById("signup-link").style.display = "none";
+          document.getElementById("seller-link").style.display = "none";
+          document.getElementById("cart-link").style.display = "block";
+          document.getElementById("order-link").style.display = "block";
+          attachLogout();
+        } else {
+          welcomeMessageDiv.style.display = "none";
+          document.getElementById("signup-link").style.display = "block";
+          document.getElementById("seller-link").style.display = "block";
+          document.getElementById("cart-link").style.display = "none";
+          document.getElementById("order-link").style.display = "none";
+        }
+      };
+
+      async function isLoggedin() {
+        try {
+          const res = await fetch("http://localhost:4500/user/verify", {
+            method: "GET",
+            credentials: "include",
+          });
+
+          if (!res.ok) return false;
+
+          const data = await res.json();
+          if (data.success) {
+            return data.user;
+          } else {
+            return false;
+          }
+        } catch (err) {
+          console.error("Error checking login:", err);
+          return false;
+        }
+      }
+      function attachLogout() {
+        logoutButton.onclick = async function () {
+          const res = await fetch("http://localhost:4500/user/logout", {
+            method: "GET",
+            credentials: "include",
+          });
+          const data = await res.json();
+          if (data.success) {
+            welcomeMessageDiv.style.display = "none";
+            logoutButton.style.display = "none";
+            document.getElementById("signup-link").style.display = "block";
+            document.getElementById("seller-link").style.display = "block";
+            document.getElementById("cart-link").style.display = "none";
+            document.getElementById("order-link").style.display = "none";
+          }
+        };
+      }
+      const searchBar = document.getElementById("search-bar");
+      const searchIcon = document.getElementById("search-icon");
+
+      function redirectToSearch() {
+        const query = searchBar.value.trim();
+        if (query !== "") {
+          window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+        }
+      }
+
+      searchIcon.addEventListener("click", redirectToSearch);
+
+      searchBar.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          redirectToSearch();
+        }
+      });
+
+      async function fetchProducts() {
+        try {
+          const response = await fetch(
+            "http://localhost:4500/product/getproduct"
+          );
+          const products = await response.json();
+          const productList = document.getElementById("product-list");
+          productList.innerHTML = "";
+          if (products && products.length > 0) {
+            products.forEach((product) => {
+              const productDiv = document.createElement("div");
+              const firstImage = product.images ? product.images[0] : "";
+              productDiv.className = "product";
+
+              const productLink = document.createElement("a");
+              productLink.href = `productinfo.html?id=${product._id}`;
+              productLink.style.textDecoration = "none";
+              productLink.style.color = "inherit";
+
+              productLink.innerHTML = `
+                <img src="${firstImage}" alt="${product.name}">
+                <h2>${product.name}</h2>
+                <p>Price: ₹${product.sellingprice}</p>
+                <p>Description: ${product.shortdescription}</p>
+              `;
+
+              productDiv.appendChild(productLink);
+              productList.appendChild(productDiv);
+            });
+          } else {
+            productList.innerHTML = "<p>No products found</p>";
+          }
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      }
+
+      fetchProducts();
+
+      // Signup Modal
+      const signupModal = document.getElementById("signup-modal");
+      const signupLink = document.getElementById("signup-link");
+      const closeSignupModal = document.getElementsByClassName("close")[0];
+      const openLoginLink = document.getElementById("open-login");
+
+      signupLink.onclick = function () {
+        signupModal.style.display = "block";
+      };
+
+      closeSignupModal.onclick = function () {
+        signupModal.style.display = "none";
+      };
+
+      openLoginLink.onclick = function () {
+        signupModal.style.display = "none";
+        loginModal.style.display = "block";
+      };
+
+      // Login Modal
+      const loginModal = document.getElementById("login-modal");
+      const closeLoginModal = document.getElementsByClassName("close-login")[0];
+      const openSignupLink = document.getElementById("open-signup");
+
+      closeLoginModal.onclick = function () {
+        loginModal.style.display = "none";
+      };
+
+      openSignupLink.onclick = function () {
+        loginModal.style.display = "none";
+        signupModal.style.display = "block";
+      };
+
+      window.addEventListener("click", function (event) {
+        if (event.target == signupModal) {
+          signupModal.style.display = "none";
+        }
+        if (event.target == loginModal) {
+          loginModal.style.display = "none";
+        }
+      });
+
+      // Signup form
+      const registrationForm = document.getElementById("Registration");
+      const messageDiv = document.getElementById("message");
+
+      // OTP Modal
+      const otpModal = document.getElementById("otp-modal");
+      const otpForm = document.getElementById("otp-form");
+      const otpMessageDiv = document.getElementById("otp-message");
+
+      registrationForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(registrationForm);
+
+        const res = await fetch("http://localhost:4500/user/signup", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.get("name"),
+            username: formData.get("username"),
+            email: formData.get("email"),
+            password: formData.get("password"),
+            confirmpassword: formData.get("confirmpassword"),
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+          setTimeout(() => {
+            document.getElementById("otp-email").value = formData.get("email");
+            signupModal.style.display = "none";
+            otpModal.style.display = "block";
+          }, 2000);
+        } else {
+          messageDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+        }
+      });
+
+      // OTP submit
+      otpForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(otpForm);
+
+        const res = await fetch("http://localhost:4500/user/verify-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: document.getElementById("otp-email").value,
+            otp: formData.get("otp"),
+          }),
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          otpMessageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+          setTimeout(() => {
+            otpModal.style.display = "none";
+            loginModal.style.display = "block";
+          }, 2000);
+        } else {
+          otpMessageDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+        }
+      });
+
+      // Resend OTP
+      const resendOtpButton = document.getElementById("resend-otp");
+      resendOtpButton.addEventListener("click", async () => {
+        const res = await fetch("http://localhost:4500/user/resend-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: document.getElementById("otp-email").value,
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setTimeout(() => {
+            otpMessageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+          }, 2000);
+        } else {
+          otpMessageDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+        }
+      });
+
+      // Login form
+      const loginForm = document.getElementById("Login");
+      const loginMessageDiv = document.getElementById("login-message");
+
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(loginForm);
+
+        const res = await fetch("http://localhost:4500/user/login", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.get("email"),
+            password: formData.get("password"),
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          welcomeText.textContent = `Welcome, ${data.user.name}`;
+          welcomeMessageDiv.style.display = "block";
+
+          // Hide signup/login links
+          document.getElementById("signup-link").style.display = "none";
+          document.getElementById("seller-link").style.display = "none";
+          document.getElementById("cart-link").style.display = "block";
+          document.getElementById("order-link").style.display = "block";
+
+          // Logout function
+          logoutButton.onclick = async function () {
+            const res = await fetch("http://localhost:4500/user/logout", {
+              method: "GET",
+              credentials: "include",
+            });
+            const data = await res.json();
+            if (data.success) {
+              welcomeMessageDiv.style.display = "none";
+              logoutButton.style.display = "none";
+              document.getElementById("signup-link").style.display = "block";
+              document.getElementById("seller-link").style.display = "block";
+              document.getElementById("cart-link").style.display = "none";
+              document.getElementById("order-link").style.display = "none";
+            }
+          };
+
+          loginMessageDiv.textContent = "Login successful!";
+          loginMessageDiv.style.color = "green";
+
+          setTimeout(() => {
+            loginModal.style.display = "none";
+            loginMessageDiv.textContent = "";
+          }, 2000);
+        } else {
+          loginMessageDiv.textContent = data.message;
+          loginMessageDiv.style.color = "red";
+        }
+      });
+
+      let logoutTimeout;
+      welcomeMessageDiv.addEventListener("mouseenter", () => {
+        logoutButton.style.display = "block";
+        clearTimeout(logoutTimeout);
+      });
+
+      welcomeMessageDiv.addEventListener("mouseleave", () => {
+        logoutTimeout = setTimeout(() => {
+          logoutButton.style.display = "none";
+        }, 4000);
+      });
+
+      logoutButton.addEventListener("mouseenter", () => {
+        logoutButton.style.display = "block";
+        clearTimeout(logoutTimeout);
+      });
+
+      logoutButton.addEventListener("mouseleave", () => {
+        logoutTimeout = setTimeout(() => {
+          logoutButton.style.display = "none";
+        }, 2000);
+      });
+
+      // ✅ Auto-open login modal if ?login is in the URL
+      window.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const loginParam = urlParams.get("login");
+
+        if (loginParam !== null) {
+          loginModal.style.display = "block";
+
+          if (window.history.replaceState) {
+            const cleanUrl =
+              window.location.protocol +
+              "//" +
+              window.location.host +
+              window.location.pathname;
+            window.history.replaceState({ path: cleanUrl }, "", cleanUrl);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

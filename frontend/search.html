@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Negozio</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0 120px;
+        background-color: #f8f8f8;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      #header {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #2c3e50;
+        color: white;
+      }
+
+      #header h1 {
+        margin: 0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 28px;
+      }
+
+      #nav-links {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .nav-link {
+        margin-right: 20px;
+        color: white;
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        text-decoration: underline;
+      }
+
+      #welcome-message {
+        position: relative;
+        text-align: center;
+      }
+
+      #logout-button {
+        width: 100%;
+        display: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        padding: 10px;
+      }
+
+      #main-container {
+        background-color: #2c3e50;
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+
+      #search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      #search-bar {
+        max-height: 40px;
+        padding: 10px;
+        width: 95%;
+        border: 1px solid #bdc3c7;
+        border-radius: 25px 0 0 25px;
+        outline: none;
+      }
+
+      #search-icon {
+        padding: 10px;
+        background-color: #2c3e50;
+        color: white;
+        border: 1px solid #bdc3c7;
+        border-left: none;
+        border-radius: 0 25px 25px 0;
+        cursor: pointer;
+      }
+
+      /* ===== Category Section ===== */
+      #category-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 35px;
+        margin-bottom: 25px;
+      }
+
+      .category {
+        margin: 0 15px;
+        padding: 10px 30px;
+        background-color: #eaeaea;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .category:hover {
+        background-color: #dcdcdc;
+      }
+
+      .category.active {
+        background-color: #b0b0b0;
+        font-weight: bold;
+      }
+
+      /* ===== Product List ===== */
+      #product-list {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .product {
+        background-color: white;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        transition: box-shadow 0.3s;
+      }
+
+      .product:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .product img {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 5px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+      <div id="nav-links">
+        <a href="homepage.html" class="nav-link">Home</a>
+        <a href="orders.html" class="nav-link">Orders</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Main Container ===== -->
+    <div id="main-container">
+      <!-- Search Bar -->
+      <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Search products..." />
+        <div id="search-icon">🔍</div>
+      </div>
+
+      <div id="category-container">
+        <a href="categoryinfo.html?category=Electronic" class="category"
+          >Electronic</a
+        >
+        <a href="categoryinfo.html?category=Men Section" class="category"
+          >Men Section</a
+        >
+        <a href="categoryinfo.html?category=Women Section" class="category"
+          >Women Section</a
+        >
+        <a href="categoryinfo.html?category=Kids Section" class="category"
+          >Kids Section</a
+        >
+        <a href="categoryinfo.html?category=Watches" class="category"
+          >Watches</a
+        >
+        <a href="categoryinfo.html?category=Footwear" class="category"
+          >Footwear</a
+        >
+        <a href="categoryinfo.html?category=Accessories" class="category"
+          >Accessories</a
+        >
+      </div>
+    </div>
+
+    <!-- Product List -->
+    <div id="product-list"></div>
+
+    <script>
+      // ===== Header Login and Logout =====
+      async function checkLogin() {
+        try {
+          const res = await fetch("http://localhost:4500/user/verify", {
+            method: "GET",
+            credentials: "include",
+          });
+          const data = await res.json();
+          const welcomeText = document.getElementById("welcome-text");
+          const logoutButton = document.getElementById("logout-button");
+          const welcomeMessageDiv = document.getElementById("welcome-message");
+
+          if (!data.success) {
+            window.location.href = "homepage.html?login";
+          } else {
+            welcomeText.textContent = `Welcome, ${data.user.name}`;
+            welcomeMessageDiv.style.display = "block";
+            logoutButton.style.display = "none";
+
+            setupHoverToggle(welcomeMessageDiv, logoutButton);
+            setupHoverToggle(logoutButton, logoutButton);
+
+            logoutButton.addEventListener("click", async () => {
+              const logoutRes = await fetch(
+                "http://localhost:4500/user/logout",
+                {
+                  method: "GET",
+                  credentials: "include",
+                }
+              );
+              const logoutData = await logoutRes.json();
+              if (logoutData.success) {
+                window.location.href = "homepage.html";
+              }
+            });
+          }
+        } catch (error) {
+          console.error("Error verifying login:", error);
+          window.location.href = "homepage.html?login";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", checkLogin);
+
+      function setupHoverToggle(element, target, delay = 2000) {
+        let timeout;
+        element.addEventListener("mouseenter", () => {
+          target.style.display = "block";
+          clearTimeout(timeout);
+        });
+        element.addEventListener("mouseleave", () => {
+          timeout = setTimeout(() => (target.style.display = "none"), delay);
+        });
+      }
+      document.addEventListener("DOMContentLoaded", checkLogin);
+
+      async function fetchSearchResults() {
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get("q") || "";
+        const productList = document.getElementById("product-list");
+
+        if (!query) {
+          productList.innerHTML = "<p>No search query provided.</p>";
+          return;
+        }
+
+        try {
+          const res = await fetch(
+            `http://localhost:4500/product/search?q=${encodeURIComponent(
+              query
+            )}`,
+            {
+              credentials: "include", // ensure cookies/session are sent
+            }
+          );
+
+          const resData = await res.json();
+          // handle both {success:true, products:[...]} and direct array
+          const products = resData.products || resData;
+
+          if (!products || products.length === 0) {
+            productList.innerHTML = `<p>No products found for "${query}"</p>`;
+            return;
+          }
+
+          productList.innerHTML = "";
+          products.forEach((product) => {
+            const firstImage =
+              product.images && product.images.length > 0
+                ? product.images[0]
+                : "placeholder.jpg";
+            const productDiv = document.createElement("div");
+            productDiv.className = "product";
+
+            productDiv.innerHTML = `
+            <a href="productinfo.html?id=${product._id}" style="text-decoration:none;color:inherit">
+              <img src="${firstImage}" alt="${product.name}">
+              <h2>${product.name}</h2>
+              <p>Price: ₹${product.sellingprice}</p>
+              <p>${product.shortdescription}</p>
+            </a>
+          `;
+
+            productList.appendChild(productDiv);
+          });
+        } catch (err) {
+          console.error(err);
+          productList.innerHTML = "<p>Error fetching search results.</p>";
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", fetchSearchResults);
+
+      document
+        .getElementById("search-bar")
+        .addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            const query = e.target.value.trim();
+            if (query !== "") {
+              window.location.href = `search.html?q=${encodeURIComponent(
+                query
+              )}`;
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

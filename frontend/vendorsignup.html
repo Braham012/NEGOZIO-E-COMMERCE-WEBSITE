@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Signup</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+        margin: 0 120px;
+        padding-top: 8px;
+        background-color: #f8f8f8;
+      }
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #2c3e50;
+        color: white;
+      }
+      #header h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #555;
+      }
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 8px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #message {
+        margin-top: 20px;
+        text-align: center;
+        color: red;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #555;
+      }
+      .footer a {
+        text-decoration: none;
+        color: #007bff;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      #websitename {
+        color: white;
+      }
+      /* Modal Styles */
+      .modal {
+        display: none; /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      .close-button {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close-button:hover,
+      .close-button:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+    </div>
+
+    <div class="container">
+      <h1>Vendor Registration</h1>
+      <form id="Registration" action="">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="shopname">Shopname:</label>
+        <input
+          type="text"
+          id="shopname"
+          name="shopname"
+          required
+          autocomplete="off"
+        />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="off"
+        />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          autocomplete="off"
+        />
+
+        <label for="confirmpassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmpassword"
+          name="confirmpassword"
+          required
+          autocomplete="off"
+        />
+
+        <label for="currentaddress">Current Address:</label>
+        <input
+          type="text"
+          id="currentaddress"
+          name="currentaddress"
+          required
+          autocomplete="off"
+        />
+
+        <label for="pincode">PINCODE:</label>
+        <input
+          type="text"
+          id="pincode"
+          name="pincode"
+          required
+          autocomplete="off"
+        />
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required autocomplete="off" />
+
+        <label for="state">State:</label>
+        <input
+          type="text"
+          id="state"
+          name="state"
+          required
+          autocomplete="off"
+        />
+
+        <button type="submit">Verify Email</button>
+      </form>
+      <div id="message"></div>
+      <p class="footer">
+        Already have a Vendor Account?
+        <a href="#" id="open-login">Login here</a>
+      </p>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h1>Vendor Login</h1>
+        <form id="Login" action="">
+          <label for="login-email">Email:</label>
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            required
+            autocomplete="off"
+          />
+
+          <label for="login-password">Password:</label>
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            required
+            autocomplete="off"
+          />
+
+          <button type="submit">Login</button>
+          <div id="login-message"></div>
+          <p>
+            <button type="button" id="forgot-password-button">
+              Forgot Password?
+            </button>
+          </p>
+          <p>
+            Don't have an Account?
+            <a href="#" id="signup-link" style="text-decoration: none"
+              >Signup</a
+            >
+          </p>
+        </form>
+
+        <!-- Forgot Password Form -->
+        <div id="forgotPasswordForm" class="hidden">
+          <h1>Forgot Password</h1>
+          <label for="forgotEmail">Email:</label>
+          <input type="email" id="forgotEmail" required autocomplete="off" />
+          <button id="sendOtpButton">Send OTP</button>
+          <div id="otpMessage"></div>
+          <label for="otp">Enter OTP:</label>
+          <input type="text" id="otp" required />
+          <button id="verifyOtpButton">Verify OTP</button>
+
+          <!-- Reset Password Section -->
+          <div id="resetPasswordSection" class="hidden">
+            <h3>Reset Password</h3>
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" required />
+            <label for="confirmNewPassword">Confirm New Password:</label>
+            <input type="password" id="confirmNewPassword" required />
+            <button id="resetPasswordButton">Reset Password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("Registration");
+      const messageDiv = document.getElementById("message");
+      const loginModal = document.getElementById("loginModal");
+      const openLoginButton = document.getElementById("open-login");
+      const closeButton = document.querySelector(".close-button");
+      const loginForm = document.getElementById("Login");
+      const loginMessageDiv = document.getElementById("login-message");
+      const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+      const sendOtpButton = document.getElementById("sendOtpButton");
+      const verifyOtpButton = document.getElementById("verifyOtpButton");
+      const resetPasswordButton = document.getElementById(
+        "resetPasswordButton"
+      );
+      const otpMessage = document.getElementById("otpMessage");
+      const resetPasswordSection = document.getElementById(
+        "resetPasswordSection"
+      );
+
+      // Open the login modal when "Login here" is clicked
+      openLoginButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent default anchor behavior
+        loginModal.style.display = "flex"; // Show the modal
+      });
+
+      // Close the modal when the close button is clicked
+      closeButton.addEventListener("click", () => {
+        loginModal.style.display = "none"; // Hide the modal
+        forgotPasswordForm.classList.add("hidden"); // Hide forgot password form
+        loginForm.classList.remove("hidden"); // Show login form
+      });
+
+      // Close the modal when clicking outside of the modal content
+      window.addEventListener("click", (event) => {
+        if (event.target === loginModal) {
+          loginModal.style.display = "none"; // Hide the modal
+          forgotPasswordForm.classList.add("hidden"); // Hide forgot password form
+          loginForm.classList.remove("hidden"); // Show login form
+        }
+      });
+
+      // Handle signup form submission
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+
+        const res = await fetch("http://localhost:4500/vendor/register", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.get("name"),
+            shopname: formData.get("shopname"),
+            email: formData.get("email"),
+            password: formData.get("password"),
+            confirmpassword: formData.get("confirmpassword"),
+            address: {
+              currentaddress: formData.get("currentaddress"),
+              pincode: formData.get("pincode"),
+              city: formData.get("city"),
+              state: formData.get("state"),
+            },
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          messageDiv.innerHTML = `<p style="color: red;">${data.message}</p>
+                    <br /><form id="otpForm">
+                    <label for="otp">Enter OTP:</label>
+                    <input type="text" id="otp" name="otp" required autocomplete="off" /><br /><br />
+                    <button type="submit">Submit</button><button type="button" id="resendOtpButton">Resend OTP</button>
+                    <br /><br />
+                    <div id="otpMessage"></div>
+                    </form>`;
+          const otpForm = document.getElementById("otpForm");
+          const otpMessageDiv = document.getElementById("otpMessage");
+
+          otpForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const otpData = new FormData(otpForm);
+            const otpRes = await fetch("http://localhost:4500/vendor/verify", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: formData.get("email"),
+                otp: otpData.get("otp"),
+              }),
+            });
+            const otpMessage = await otpRes.json();
+            if (otpMessage.success) {
+              otpMessageDiv.innerHTML = `<p style="color: green;">${otpMessage.message}</p>`;
+            } else {
+              otpMessageDiv.innerHTML = `<p style="color: red;">${otpMessage.message}</p>`;
+            }
+            setTimeout(() => {
+              window.location.href = "";
+            }, 3000);
+          });
+          document
+            .getElementById("resendOtpButton")
+            .addEventListener("click", async (event) => {
+              event.preventDefault();
+              const resendOtpRes = await fetch(
+                "http://localhost:4500/vendor/resend-otp",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    email: formData.get("email"),
+                  }),
+                }
+              );
+              const resendOtpMessage = await resendOtpRes.json();
+              otpMessageDiv.innerHTML = `<p style="color: green;">${resendOtpMessage.message}</p>`;
+            });
+        } else {
+          messageDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+        }
+      });
+
+      // Handle login form submission
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(loginForm);
+
+        const res = await fetch("http://localhost:4500/vendor/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.get("email"),
+            password: formData.get("password"),
+          }),
+          credentials: "include",
+        });
+        const data = await res.json();
+        if (data.success) {
+          loginMessageDiv.textContent = data.message;
+          loginMessageDiv.style.color = "green";
+          setTimeout(() => {
+            window.location.href = "vendorallproduct.html"; // Redirect or close modal
+          }, 2000);
+        } else {
+          loginMessageDiv.textContent = data.message;
+          loginMessageDiv.style.color = "red";
+        }
+      });
+
+      // Show forgot password form
+      document
+        .getElementById("forgot-password-button")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          forgotPasswordForm.classList.remove("hidden"); // Show forgot password form
+          loginForm.classList.add("hidden"); // Hide login form
+        });
+
+      // Handle sending OTP for forgot password
+      sendOtpButton.addEventListener("click", async () => {
+        const email = document.getElementById("forgotEmail").value;
+        const res = await fetch(
+          "http://localhost:4500/vendor/forgot-password",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          }
+        );
+        const data = await res.json();
+        otpMessage.textContent = data.message;
+        otpMessage.style.color = data.success ? "green" : "red";
+        if (data.success) {
+          resetPasswordSection.classList.remove("hidden");
+        }
+      });
+
+      // Handle OTP verification
+      verifyOtpButton.addEventListener("click", async () => {
+        const email = document.getElementById("forgotEmail").value;
+        const otp = document.getElementById("otp").value;
+        const res = await fetch(
+          "http://localhost:4500/vendor/verify-forgot-password",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, otp }),
+          }
+        );
+        const data = await res.json();
+        otpMessage.textContent = data.message;
+        otpMessage.style.color = data.success ? "green" : "red";
+        if (data.success) {
+          resetPasswordSection.classList.remove("hidden");
+        }
+      });
+
+      // password reset
+      resetPasswordButton.addEventListener("click", async () => {
+        const email = document.getElementById("forgotEmail").value;
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmNewPassword =
+          document.getElementById("confirmNewPassword").value;
+
+        if (newPassword !== confirmNewPassword) {
+          otpMessage.textContent = "Passwords do not match.";
+          otpMessage.style.color = "red";
+          return;
+        }
+
+        const res = await fetch("http://localhost:4500/vendor/reset-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, newPassword, confirmNewPassword }),
+        });
+        const data = await res.json();
+        otpMessage.textContent = data.message;
+        otpMessage.style.color = data.success ? "green" : "red";
+        if (data.success) {
+          setTimeout(() => {
+            loginModal.style.display = "none";
+            forgotPasswordForm.classList.add("hidden");
+            loginForm.classList.remove("hidden");
+          }, 2000);
+        }
+      });
+
+      document
+        .getElementById("signup-link")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          loginModal.style.display = "none";
+        });
+    </script>
+  </body>
+</html>

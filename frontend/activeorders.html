@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Negozio - Active Orders</title>
+    <style>
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --light-color: #f8f8f8;
+        --dark-color: #333;
+      }
+
+      body {
+        font-family: "Courier New", Courier, monospace;
+        margin: 0 120px;
+        padding-top: 8px;
+        background-color: var(--light-color);
+      }
+
+      /* Header */
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: var(--primary-color);
+        color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #header h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+
+      /* Layout */
+      .container {
+        display: flex;
+        min-height: calc(100vh - 68px);
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 250px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0;
+      }
+
+      .sidebar-menu li {
+        margin-bottom: 15px;
+      }
+
+      .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        color: var(--dark-color);
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar-menu a:hover,
+      .sidebar-menu a.active {
+        background-color: var(--secondary-color);
+        color: white;
+      }
+
+      .sidebar-menu i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Active Orders Grid */
+      .orders-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 50px;
+        padding-top: 30px;
+        flex-grow: 1;
+        max-height: 400px;
+      }
+
+      .order-box {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+        text-align: center;
+      }
+
+      .order-box:hover {
+        transform: scale(1.05);
+      }
+
+      .order-box img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          box-shadow: none;
+          border-bottom: 1px solid #eee;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Negozio Vendor</h1>
+    </div>
+
+    <div class="container">
+      <div class="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="vendorallproduct.html">
+              <i class="fas fa-box-open"></i> Products
+            </a>
+          </li>
+          <li>
+            <a href="addproduct.html">
+              <i class="fas fa-plus-circle"></i> Add Product
+            </a>
+          </li>
+          <li>
+            <a href="activeorders.html" class="active">
+              <i class="fas fa-shopping-bag"></i> Active Orders
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logoutButton" style="color: var(--accent-color)">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="orders-container" id="ordersContainer"></div>
+    </div>
+
+    <script>
+      async function fetchActiveOrders() {
+        try {
+          const response = await fetch(
+            "http://localhost:4500/order/vendororders",
+            { credentials: "include" }
+          );
+          const data = await response.json();
+
+          const container = document.getElementById("ordersContainer");
+          container.innerHTML = "";
+
+          if (data.success && data.orders.length > 0) {
+            data.orders.forEach((order) => {
+              const product = order.productID || {}; // Handles null
+              const imageUrl =
+                product.images?.[0] || "https://via.placeholder.com/150";
+              const productName = product.name || "Unknown Product";
+              const productprice = product.sellingprice || "N/A";
+
+              const orderBox = document.createElement("div");
+              orderBox.className = "order-box";
+              orderBox.innerHTML = `
+                <img src="${imageUrl}" alt="${productName}" />
+                <h2>${productName}</h2>
+                <p>Price: ₹${productprice}</p>
+                <p>Quantity: ${order.quantity}</p>
+                <p>Status: ${order.status}</p>
+                <p>Delivery: ${
+                  order.deliverydate
+                    ? new Date(order.deliverydate).toLocaleDateString()
+                    : "N/A"
+                }</p>
+              `;
+
+              // Make the entire box clickable if productID exists
+              if (order.productID && order.productID._id) {
+                orderBox.style.cursor = "pointer";
+                orderBox.addEventListener("click", () => {
+                  window.location.href = `vendorproductinfo.html?id=${order.productID._id}`;
+                });
+              }
+
+              container.appendChild(orderBox);
+            });
+          } else {
+            container.innerHTML =
+              '<p style="text-align:center; padding:20px;">No active orders found.</p>';
+          }
+        } catch (error) {
+          console.error("Error fetching active orders:", error);
+        }
+      }
+
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", async (event) => {
+          event.preventDefault();
+          try {
+            const response = await fetch(
+              "http://localhost:4500/vendor/logout",
+              {
+                method: "GET",
+                credentials: "include",
+              }
+            );
+            const data = await response.json();
+            if (data.success) {
+              window.location.href = "homepage.html";
+            }
+          } catch (error) {
+            console.error("Error logging out:", error);
+          }
+        });
+
+      fetchActiveOrders();
+    </script>
+  </body>
+</html>
