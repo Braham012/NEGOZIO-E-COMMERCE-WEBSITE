@@ -94,15 +94,11 @@ Visit http://localhost:3000 in your browser.
 Below are preview images of the Negozio e-commerce Website.
 
 ### Home Page
-### Homepage
 | ![home1](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004054.png) | ![home2](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004001.png) |
 |-------------------------|-------------------------|
-
-
-
 ### User Registration Interface
-![]()
-
+| ![1](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004425.png) | ![2](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004728.png) |
+|-------------------------|-------------------------|
 ### ProductInfo Page
 ![productinfo](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005117.png)![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005202.png)
 ### Cart Page
