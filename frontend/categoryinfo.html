@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/categoryinfo.css" />
+    <title>categoryinfo</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+      <div id="nav-links">
+        <a
+          href="homepage.html"
+          id="homepage-link"
+          style="margin-right: 20px; color: white; text-decoration: none"
+          >Home</a
+        >
+        <a
+          href="orders.html"
+          id="order-link"
+          style="margin-right: 20px; color: white; text-decoration: none"
+          >Orders</a
+        >
+        <a
+          href="cart.html"
+          id="cart-link"
+          style="margin-right: 20px; color: white; text-decoration: none"
+          >Cart</a
+        >
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-container">
+      <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Search products..." />
+        <div id="search-icon">🔍</div>
+      </div>
+
+      <div id="category-container">
+        <a href="categoryinfo.html?category=Electronic" class="category"
+          >Electronic</a
+        >
+        <a href="categoryinfo.html?category=Men Section" class="category"
+          >Men Section</a
+        >
+        <a href="categoryinfo.html?category=Women Section" class="category"
+          >Women Section</a
+        >
+        <a href="categoryinfo.html?category=Kids Section" class="category"
+          >Kids Section</a
+        >
+        <a href="categoryinfo.html?category=Watches" class="category"
+          >Watches</a
+        >
+        <a href="categoryinfo.html?category=Footwear" class="category"
+          >Footwear</a
+        >
+        <a href="categoryinfo.html?category=Accessories" class="category"
+          >Accessories</a
+        >
+      </div>
+    </div>
+
+    <div id="product-list"></div>
+    <script src="script/categoryinfo.js" defer></script>
+  </body>
+</html>

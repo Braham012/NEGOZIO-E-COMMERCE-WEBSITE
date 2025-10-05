@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/vendorsignup.css" />
+    <title>Vendor Signup</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+    </div>
+
+    <div class="container">
+      <h1>Vendor Registration</h1>
+      <form id="Registration" action="">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="shopname">Shopname:</label>
+        <input
+          type="text"
+          id="shopname"
+          name="shopname"
+          required
+          autocomplete="off"
+        />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="off"
+        />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          autocomplete="off"
+        />
+
+        <label for="confirmpassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmpassword"
+          name="confirmpassword"
+          required
+          autocomplete="off"
+        />
+
+        <label for="currentaddress">Current Address:</label>
+        <input
+          type="text"
+          id="currentaddress"
+          name="currentaddress"
+          required
+          autocomplete="off"
+        />
+
+        <label for="pincode">PINCODE:</label>
+        <input
+          type="text"
+          id="pincode"
+          name="pincode"
+          required
+          autocomplete="off"
+        />
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required autocomplete="off" />
+
+        <label for="state">State:</label>
+        <input
+          type="text"
+          id="state"
+          name="state"
+          required
+          autocomplete="off"
+        />
+
+        <button type="submit">Verify Email</button>
+      </form>
+      <div id="message"></div>
+      <p class="footer">
+        Already have a Vendor Account?
+        <a href="#" id="open-login">Login here</a>
+      </p>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h1>Vendor Login</h1>
+        <form id="Login" action="">
+          <label for="login-email">Email:</label>
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            required
+            autocomplete="off"
+          />
+
+          <label for="login-password">Password:</label>
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            required
+            autocomplete="off"
+          />
+
+          <button type="submit">Login</button>
+          <div id="login-message"></div>
+          <p>
+            <button type="button" id="forgot-password-button">
+              Forgot Password?
+            </button>
+          </p>
+          <p>
+            Don't have an Account?
+            <a href="#" id="signup-link" style="text-decoration: none"
+              >Signup</a
+            >
+          </p>
+        </form>
+
+        <!-- Forgot Password Form -->
+        <div id="forgotPasswordForm" class="hidden">
+          <h1>Forgot Password</h1>
+          <label for="forgotEmail">Email:</label>
+          <input type="email" id="forgotEmail" required autocomplete="off" />
+          <button id="sendOtpButton">Send OTP</button>
+          <div id="otpMessage"></div>
+          <label for="otp">Enter OTP:</label>
+          <input type="text" id="otp" required />
+          <button id="verifyOtpButton">Verify OTP</button>
+
+          <!-- Reset Password Section -->
+          <div id="resetPasswordSection" class="hidden">
+            <h3>Reset Password</h3>
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" required />
+            <label for="confirmNewPassword">Confirm New Password:</label>
+            <input type="password" id="confirmNewPassword" required />
+            <button id="resetPasswordButton">Reset Password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/vendorsignup.js" defer></script>
+  </body>
+</html>

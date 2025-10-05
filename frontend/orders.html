@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/orders.css" />
+    <title>Your Orders</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Negozio</h1>
+      <div id="nav-links">
+        <a
+          href="homepage.html"
+          style="color: white; text-decoration: none; margin-right: 40px"
+          >Home</a
+        >
+        <a
+          href="cart.html"
+          style="color: white; text-decoration: none; margin-right: 20px"
+          >Cart</a
+        >
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <h2>Your Orders</h2>
+      <div id="orders-container" style="margin-top: 20px; font-size: 18px">
+        Loading your orders...
+      </div>
+    </main>
+
+    <div id="popup-overlay">
+      <div id="popup-box">
+        <div id="popup-message">Confirm Cancel?</div>
+        <div id="popup-buttons">
+          <button id="popup-yes">Yes</button>
+          <button id="popup-no">No</button>
+        </div>
+        <div id="popup-status"></div>
+      </div>
+    </div>
+
+    <script src="script/order.js" defer></script>
+  </body>
+</html>

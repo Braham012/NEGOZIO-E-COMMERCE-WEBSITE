@@ -1,0 +1,149 @@
+body {
+  font-family: Arial, sans-serif;
+  margin-right: 120px;
+  margin-left: 120px;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #2c3e50;
+  color: white;
+}
+
+#header h1 {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 28px;
+}
+
+#nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.product-info {
+  margin: 25px 20%;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+}
+
+.product-info * {
+  margin: 30px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.add-to-cart {
+  background-color: #28a745;
+}
+
+.order-now {
+  background-color: #007bff;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/* Welcome message and logout */
+#welcome-message {
+  position: relative;
+  text-align: center;
+  display: block;
+}
+
+#logout-button {
+  width: 100%;
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 8px 12px;
+}
+
+/* Order Confirmation Popup */
+#order-confirm-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1000;
+  text-align: center;
+}
+
+#order-confirm-popup button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+#order-yes {
+  background-color: #2ecc71;
+}
+
+#order-no {
+  background-color: #e74c3c;
+}

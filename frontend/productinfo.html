@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/productinfo.css" />
+    <title>Product Info</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+      <div id="nav-links">
+        <a
+          href="homepage.html"
+          style="margin-right: 40px; color: white; text-decoration: none"
+          >Home</a
+        >
+        <a
+          href="orders.html"
+          style="margin-right: 20px; color: white; text-decoration: none"
+          >Orders</a
+        >
+        <a
+          href="cart.html"
+          style="margin-right: 20px; color: white; text-decoration: none"
+          >Cart</a
+        >
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-info" id="product-info"></div>
+
+    <!-- ORDER CONFIRM POPUP -->
+    <div id="order-confirm-popup">
+      <p id="order-confirm-message">
+        Are you sure you want to place this order?
+      </p>
+      <button id="order-yes">Yes</button>
+      <button id="order-no">No</button>
+    </div>
+    <script src="script/productinfo.js" defer></script>
+  </body>
+</html>

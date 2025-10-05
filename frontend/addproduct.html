@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/addproduct.css" />
+    <title>New Product</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio Vendor</h1>
+    </div>
+
+    <div class="container">
+      <div class="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="vendorallproduct.html">
+              <i class="fas fa-box-open"></i>
+              Products
+            </a>
+          </li>
+          <li>
+            <a href="addproduct.html" class="active">
+              <i class="fas fa-plus-circle"></i>
+              Add Product
+            </a>
+          </li>
+          <li>
+            <a href="activeorders.html">
+              <i class="fas fa-shopping-bag"></i>
+              Active Orders
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logoutButton" style="color: #e74c3c">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-container">
+        <h2>Add New Product</h2>
+        <div id="messageBox" class="message-box"></div>
+        <!-- Message box added here -->
+        <form
+          action="http://localhost:4500/product/addproduct"
+          method="POST"
+          enctype="multipart/form-data"
+          credentials="require"
+        >
+          <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="producttype">Product Type</label>
+            <input type="text" id="producttype" name="producttype" required />
+          </div>
+          <div class="form-group">
+            <label for="shortdescription">Short Description</label>
+            <input
+              type="text"
+              id="shortdescription"
+              name="shortdescription"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="sellingprice">Selling Price</label>
+            <input
+              type="number"
+              id="sellingprice"
+              name="sellingprice"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="discount">Discount</label>
+            <input type="number" id="discount" name="discount" />
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="">Select a category</option>
+              <option value="Electronic">Electronic</option>
+              <option value="Men Section">Men Section</option>
+              <option value="Women Section">Women Section</option>
+              <option value="Kids Section">Kids Section</option>
+              <option value="Watches">Watches</option>
+              <option value="Footwear">Footwear</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="promotion">Promotion</label>
+            <select id="promotion" name="promotion" required>
+              <option value="no" selected>No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="images">Upload Images (max 6)</label>
+            <input
+              type="file"
+              id="images"
+              name="images"
+              multiple
+              accept="image/*"
+              data-max-files="6"
+              required
+            />
+            <small class="form-text text-muted"
+              >Select multiple images (up to 6)</small
+            >
+          </div>
+          <div
+            id="image-preview-container"
+            style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px"
+          ></div>
+          <div class="button-container">
+            <button type="submit" class="submit-button">Add Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="script/addproduct.js" defer></script>
+  </body>
+</html>

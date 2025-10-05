@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/modifyproduct.css" />
+    <title>Modify Product</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio Vendor</h1>
+    </div>
+
+    <div class="container">
+      <div class="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="vendorallproduct.html"
+              ><i class="fas fa-box-open"></i> Products</a
+            >
+          </li>
+          <li>
+            <a href="addproduct.html"
+              ><i class="fas fa-plus-circle"></i> Add Product</a
+            >
+          </li>
+          <li>
+            <a href="activeorders.html"
+              ><i class="fas fa-shopping-bag"></i> Active Orders</a
+            >
+          </li>
+          <li>
+            <a href="#" id="logoutButton" style="color: #e74c3c"
+              ><i class="fas fa-sign-out-alt"></i> Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-container">
+        <form id="modifyProductForm">
+          <h2>Modify Product</h2>
+          <div class="form-group">
+            <label for="modifyName">Product Name</label
+            ><input type="text" id="modifyName" required />
+          </div>
+          <div class="form-group">
+            <label for="modifyType">Product Type</label
+            ><input type="text" id="modifyType" required />
+          </div>
+          <div class="form-group">
+            <label for="modifyShortDescription">Short Description</label
+            ><textarea id="modifyShortDescription" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="modifyDescription">Description</label
+            ><textarea id="modifyDescription" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="modifySellingPrice">Price</label
+            ><input type="number" id="modifySellingPrice" required />
+          </div>
+          <div class="form-group">
+            <label for="modifyDiscount">Discount</label
+            ><input type="number" id="modifyDiscount" />
+          </div>
+          <div class="form-group">
+            <label for="modifyCategory">Category</label>
+            <select id="modifyCategory" required>
+              <option value="">Select Category</option>
+              <option value="Electronic">Electronic</option>
+              <option value="Men Clothes">Men Clothes</option>
+              <option value="Women Clothes">Women Clothes</option>
+              <option value="Kids Section">Kids Section</option>
+              <option value="Watches">Watches</option>
+              <option value="Shoes">Shoes</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modifyPromotion">Promotion</label>
+            <select id="modifyPromotion">
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+          <div class="action-buttons">
+            <button type="submit" class="modify-btn">Save Changes</button>
+          </div>
+        </form>
+        <div id="successMessage" class="success-message">
+          Product updated successfully!
+        </div>
+      </div>
+    </div>
+    <script src="script/modifyproduct.js" defer></script>
+  </body>
+</html>

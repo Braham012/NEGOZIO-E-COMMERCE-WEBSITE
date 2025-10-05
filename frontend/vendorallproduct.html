@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/vendorallproduct.css" />
+    <title>Negozio - Vendor Dashboard</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio Vendor</h1>
+      <div
+        class="user-info"
+        style="display: flex; align-items: center; gap: 20px"
+      >
+        <span>Welcome, <span id="shopname"></span></span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="vendorallproduct.html" class="active">
+              <i class="fas fa-box-open"></i>
+              Products
+            </a>
+          </li>
+          <li>
+            <a href="addproduct.html">
+              <i class="fas fa-plus-circle"></i>
+              Add Product
+            </a>
+          </li>
+          <li>
+            <a href="activeorders.html">
+              <i class="fas fa-shopping-bag"></i>
+              Active Orders
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logoutButton" style="color: var(--accent-color)">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="product-container" id="productContainer"></div>
+    </div>
+    <script src="script/vendorallproduct.js" defer></script>
+  </body>
+</html>

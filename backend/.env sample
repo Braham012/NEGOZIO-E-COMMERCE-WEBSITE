@@ -1,0 +1,8 @@
+PORT=your port number
+URL=database url
+SECRET=password to generate json web token
+EMAIL=email id
+PASSWORD=email id app password
+CLOUDINARY_CLOUD_NAME=______________
+CLOUDINARY_API_KEY=______________________
+CLOUDINARY_API_SECRET=__________________________

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/search.css" />
+    <title>Negozio</title>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+      <div id="nav-links">
+        <a href="homepage.html" class="nav-link">Home</a>
+        <a href="orders.html" class="nav-link">Orders</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Main Container ===== -->
+    <div id="main-container">
+      <!-- Search Bar -->
+      <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Search products..." />
+        <div id="search-icon">🔍</div>
+      </div>
+
+      <div id="category-container">
+        <a href="categoryinfo.html?category=Electronic" class="category"
+          >Electronic</a
+        >
+        <a href="categoryinfo.html?category=Men Section" class="category"
+          >Men Section</a
+        >
+        <a href="categoryinfo.html?category=Women Section" class="category"
+          >Women Section</a
+        >
+        <a href="categoryinfo.html?category=Kids Section" class="category"
+          >Kids Section</a
+        >
+        <a href="categoryinfo.html?category=Watches" class="category"
+          >Watches</a
+        >
+        <a href="categoryinfo.html?category=Footwear" class="category"
+          >Footwear</a
+        >
+        <a href="categoryinfo.html?category=Accessories" class="category"
+          >Accessories</a
+        >
+      </div>
+    </div>
+
+    <!-- Product List -->
+    <div id="product-list"></div>
+
+    <script src="script/search.js" defer></script>
+  </body>
+</html>

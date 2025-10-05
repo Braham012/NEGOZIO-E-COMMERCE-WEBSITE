@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/cart.css" />
+    <title>Cart Info</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="websitename">Negozio</h1>
+      <div id="nav-links">
+        <a href="homepage.html">Home</a>
+        <a style="margin-right: 20px" href="orders.html">Orders</a>
+        <div id="welcome-message">
+          <span id="welcome-text"></span>
+          <button id="logout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="cart-container">
+      <h2>Your Cart</h2>
+      <div id="cart-items">
+        <p id="empty-cart-message">Your cart is empty.</p>
+        <div id="cart-items-list"></div>
+      </div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="total-price-container">
+        <span>Total:</span>
+        <span class="total-price" id="total-amount">₹000</span>
+      </div>
+      <button id="order-button">Order Now</button>
+    </div>
+
+    <div id="order-confirm-popup">
+      <p id="order-confirm-message">
+        Are you sure you want to place this order?
+      </p>
+      <button id="order-yes">Yes</button>
+      <button id="order-no">No</button>
+    </div>
+
+    <script src="script/cart.js" defer></script>
+  </body>
+</html>
