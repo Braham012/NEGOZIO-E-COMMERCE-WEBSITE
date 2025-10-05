@@ -69,22 +69,23 @@ cd NEGOZIO-E-COMMERCE-WEBSITE
 ```
 
 ### Install Dependencies
-
+```bash
 npm install
-
+```
 
 ### Configure Environment Variables
-
+```bash
 Create a .env file with your database URI, Cloudinary credentials, JWT secret, and email credentials.
-
+```
 ### Run the Server
-
+```bash
 npm start
-
+```
 
 ### Open the Application
-
+```bash
 Visit http://localhost:3000 in your browser.
+```
 
 ---
 
