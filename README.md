@@ -120,3 +120,5 @@ Below are preview images of the Negozio e-commerce Website.
 ![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004211.png)
 ### Vendor Active Order
 ![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004456.png)
+
+---
