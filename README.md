@@ -1,38 +1,34 @@
-NEGOZIO E-Commerce Website
+# NEGOZIO E-Commerce Website
 
 NEGOZIO E-Commerce Website is a modern, responsive online shopping platform designed to provide a seamless and engaging experience for users.
 It allows customers to browse products, manage their shopping cart, and place orders with ease. Vendors can manage their products and view orders efficiently through a dedicated dashboard.
 
-📌 Overview
+---
 
-NEGOZIO focuses on user experience, performance, and responsiveness, ensuring smooth navigation across desktops, tablets, and mobile devices.
+## 📌 Overview
 
+NEGOZIO focuses on user experience, performance, and responsiveness, ensuring smooth navigation across desktops.
 The platform supports both customers and vendors, giving vendors the tools to manage products and track active orders.
 
-✨ Features
-Customer Features
+---
+
+## ✨ Features
+
+###Customer Features
 
 Product Catalog – Browse, search, and filter products efficiently.
-
 Product Details – View product descriptions, prices, and images.
-
 Shopping Cart – Add, remove, or update products in the cart.
-
 Checkout System – Place orders and provide delivery details.
-
 Order History – Track past purchases.
-
 Interactive Navigation – Easy-to-use menu for all pages.
 
-Vendor Dashboard Features
+### Vendor Dashboard Features
 
 Active Orders – View and track all current orders.
-
 Add Product – Add new products with images and descriptions.
-
 Manage Products – Edit or delete existing products.
-
-Product Status – Manage active and inactive products.
+Product Check  – Check all the uploaded products.
 
 🛠 Technology Stack
 Backend & Server
