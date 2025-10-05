@@ -94,6 +94,7 @@ Visit http://localhost:3000 in your browser.
 Below are preview images of the Negozio e-commerce Website.
 
 ### Home Page
+|----------------|----------------|
 | ![home1](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004054.png) | ![home2](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004001.png) |
 
 
