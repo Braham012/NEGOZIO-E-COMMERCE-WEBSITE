@@ -99,15 +99,24 @@ Below are preview images of the Negozio e-commerce Website.
 ### User Registration Interface
 | ![1](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004425.png) | ![2](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004728.png) |
 |-------------------------|-------------------------|
+### Login Interface
+![login](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004931.png)
 ### ProductInfo Page
-![productinfo](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005117.png)![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005202.png)
+| ![home1](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005117.png) | ![home2](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005202.png) |
+|-------------------------|-------------------------|
+### Category Wise Product
+![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004035.png)
+### Search Bar Functioning
+![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004019.png)
 ### Cart Page
 ![cart](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20003948.png)
-
 ### Order Page
 ![order](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20003931.png)
-
-
-Vendor Dashboard
-
-Footer View
+### Vendor Authetication
+![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20005304.png)
+### Check Added Product
+![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004126.png)
+### Add New Product
+![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004211.png)
+### Vendor Active Order
+![](https://github.com/Braham012/NEGOZIO-E-COMMERCE-WEBSITE/blob/main/demo%20screenshot/Screenshot%202025-10-06%20004456.png)
