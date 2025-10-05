@@ -14,7 +14,7 @@ The platform supports both customers and vendors, giving vendors the tools to ma
 
 ## ✨ Features
 
-###Customer Features
+### Customer Features
 
 - **Product Catalog** – Browse, search, and filter products efficiently.
 - **Product Details** – View product descriptions, prices, and images.
@@ -42,7 +42,7 @@ The platform supports both customers and vendors, giving vendors the tools to ma
 - Express-session & Cookie-parser – Session management
 - Bcrypt – Password hashing
 
-###Frontend & Styling
+### Frontend & Styling
 
 - HTML5 & CSS3 – Structure and responsive styling
 - JavaScript – Dynamic UI interactivity
