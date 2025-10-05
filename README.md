@@ -16,7 +16,7 @@ The platform supports both customers and vendors, giving vendors the tools to ma
 
 ###Customer Features
 
--**Product Catalog** – Browse, search, and filter products efficiently.
+- **Product Catalog** – Browse, search, and filter products efficiently.
 **Product Details** – View product descriptions, prices, and images.
 Shopping Cart – Add, remove, or update products in the cart.
 Checkout System – Place orders and provide delivery details.
