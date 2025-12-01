@@ -13,9 +13,9 @@ const { orderrouter } = require("./services/order/router");
 config({ path: "./../NODE PROJECT/backend/.env" });
 
 const app = express();
-app.use(express.json()); //middleware to parse JSON bodies
-app.use(cors({ origin: "http://localhost:5500", credentials: true })); //middleware to enable CORS
-app.use(cookieparser()); //middleware to parse cookies
+app.use(express.json());
+app.use(cors({ origin: "http://localhost:5501", credentials: true }));
+app.use(cookieparser());
 
 app.use("/user", router);
 app.use("/vendor", routers);

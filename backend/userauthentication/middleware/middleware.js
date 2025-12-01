@@ -5,7 +5,7 @@ config.config({ path: "./../NODE PROJECT/backend/.env" });
 const Key = process.env.SECRET;
 
 const authMiddleware = (req, res, next) => {
-  const token = req.cookies.token; // read from cookie
+  const token = req.cookies.token;
 
   if (!token) {
     return res
